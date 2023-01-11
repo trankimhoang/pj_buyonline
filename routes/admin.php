@@ -25,4 +25,8 @@ Route::middleware(['auth:admin'])->group(function (){
 
     Route::resource('admins', 'Admin\AdminController')->except('show');
 
+    Route::get('list-user', [\App\Http\Controllers\Admin\UserController::class, 'listUser'])->name('user.list');
+
+    Route::resource('category', 'Admin\ProductCategoryController');
+
 });

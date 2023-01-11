@@ -10,6 +10,10 @@
             @csrf
             @method('put')
             <div class="form-group">
+                <label for="name">ID</label>
+                <input readonly type="text" name="id" class="form-control" value="{{ old('name', $admin->name) }}">
+            </div>
+            <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control" value="{{ old('name', $admin->name) }}">
             </div>
