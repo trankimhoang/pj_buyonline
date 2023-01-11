@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @method static find(int $id)
+ */
 class Admin extends Authenticatable
 {
     use Notifiable;

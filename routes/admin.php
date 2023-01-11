@@ -23,6 +23,6 @@ Route::middleware(['auth:admin'])->group(function (){
 
     Route::get('logout', [\App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout');
 
-    Route::resource('admin', 'Admin\AdminController')->except('show');
+    Route::resource('admins', 'Admin\AdminController')->except('show');
 
 });

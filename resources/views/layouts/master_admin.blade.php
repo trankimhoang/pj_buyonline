@@ -14,7 +14,7 @@
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand ps-3" href="{{ route('admin.index') }}">Buy Online</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
@@ -42,10 +42,10 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
+                    <div class="sb-sidenav-menu-heading">Menu</div>
+                    <a class="nav-link" href="{{ route('admin.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
+                        Trang chủ
                     </a>
                     <div class="sb-sidenav-menu-heading">Interface</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -55,8 +55,8 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="{{ route('admin.index') }}">Danh sach</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                            <a class="nav-link" href="{{ route('admin.admins.index') }}">Danh sách</a>
+                            <a class="nav-link" href="{{ route('admin.admins.create') }}">Thêm quản trị</a>
                         </nav>
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -108,7 +108,22 @@
         </nav>
     </div>
     <div id="layoutSidenav_content">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">@yield('page_title')</h1>
+        </div>
         <main>
+            @if(session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div>
+            @endif
+
+            @if(session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
+
             @yield('content')
         </main>
         <footer class="py-4 bg-light mt-auto">

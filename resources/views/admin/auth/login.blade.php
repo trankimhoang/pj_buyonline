@@ -22,9 +22,9 @@
                     @endif
                     <form id="login-form" class="form" action="{{ route('admin.login.post') }}" method="post">
                         @csrf
-                        <h3 class="text-center text-info">{{ __('Login') }}</h3>
+                        <h3 class="text-center text-info">Đăng nhập</h3>
                         <div class="form-group">
-                            <label for="email" class="text-info">{{ __('Email') }}</label><br>
+                            <label for="email" class="text-info">Email</label><br>
                             <input type="text" name="email" class="form-control" value="{{ old('email') }}">
 
                             @error('email')
@@ -32,7 +32,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password" class="text-info">{{ __('Password') }}</label><br>
+                            <label for="password" class="text-info">Mật khẩu</label><br>
                             <input type="password" name="password" class="form-control" value="{{ old('password') }}">
 
                             @error('password')
@@ -40,7 +40,7 @@
                             @enderror
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" name="submit" class="btn btn-info btn-md" value="{{ __('Login') }}">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Đăng nhập">
                         </div>
                     </form>
                 </div>
