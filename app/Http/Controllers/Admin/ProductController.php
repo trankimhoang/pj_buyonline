@@ -3,23 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
+use App\Models\Post;
+use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
-class ProductCategoryController extends Controller {
+class ProductController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return View
      */
     public function index(): View {
-        $listCategory = ProductCategory::all();
-        return view('admin.product_category.index', compact('listCategory'));
+        $listProduct = Product::all();
+        return view('admin.product.index', compact('listProduct'));
     }
 
     /**
@@ -28,27 +31,37 @@ class ProductCategoryController extends Controller {
      * @return View
      */
     public function create(): View {
-        return view('admin.category.create');
+        $listCategory = ProductCategory::all();
+        return view('admin.product.create', compact('listCategory'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return RedirectResponse
      */
     public function store(Request $request): \Illuminate\Http\RedirectResponse {
         try {
-            $category = new ProductCategory();
-            $category->setAttribute('name', $request->get('name'));
-            $category->save();
+            $data = $request->all();
 
-            return redirect()->route('admin.category.index')->with('success', 'Thêm thành công');
-        }catch (\Exception $exception){
+            $product = new Product();
+            $product->fill($data);
+            $product->save();
+
+            if ($request->has('image')) {
+                $imagePath = 'product_images/' . $product->getAttribute('id');
+
+                $imageUrl = uploadImage($request->file('image'), 'avatar', $imagePath);
+                $product->setAttribute('image', $imageUrl);
+                $product->save();
+            }
+
+            return redirect()->route('admin.products.index');
+        } catch (\Exception $exception){
             Log::error($exception->getMessage());
             return redirect()->back()->with('error', $exception->getMessage());
         }
-
     }
 
     /**
@@ -65,34 +78,22 @@ class ProductCategoryController extends Controller {
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit(int $id): View {
-        $category = ProductCategory::find($id);
-        return view('admin.product_category.edit', compact('category'));
+        $product = Product::find($id);
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
-     * @return RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse {
-        try {
-            $category = ProductCategory::find($id);
-            $data = $request->all();
-
-            $category->fill($data);
-
-            $category->save();
-            return redirect()->route('admin.category.index')->with('success', 'Sửa thành công');
-        }catch (\Exception $exception){
-            Log::error($exception->getMessage());
-            return redirect()->back()->with('error', $exception->getMessage());
-        }
-
+    public function update(Request $request, $id) {
+        //
     }
 
     /**
@@ -103,11 +104,10 @@ class ProductCategoryController extends Controller {
      */
     public function destroy(int $id): \Illuminate\Http\RedirectResponse {
         try {
-            $category = ProductCategory::find($id);
-            $category->delete();
-
+            $product = Product::find($id);
+            $product->delete();
             return redirect()->back()->with('success', 'Xóa thành công');
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             return redirect()->back()->with('error', $exception->getMessage());
         }

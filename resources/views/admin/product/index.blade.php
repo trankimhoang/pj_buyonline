@@ -1,12 +1,12 @@
 @extends('layouts.master_admin')
 @section('content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Danh sách loại sản phẩm</h1>
+        <h1 class="mt-4">Danh sách sản phẩm</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Trang chủ</a></li>
             <li class="breadcrumb-item active">Tables</li>
         </ol>
-        <a href="{{ route('admin.category.create') }}" class="btn btn-primary mb-2">Thêm</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary mb-2">Thêm</a>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
@@ -17,29 +17,43 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Product Name</th>
+                        <th>Category Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Product Name</th>
+                        <th>Category Name</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($listCategory as $category)
+                    @foreach($listProduct as $product)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>
+                                <img src="{{ $product->getImage() }}" alt="" width="128px">
+                            </td>
+                            <td>{{ $product->price }}</td>
                             <td>
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-success btn-sm rounded-0"><i class="fa fa-edit"></i></a>
+                                        <a href="" class="btn btn-success btn-sm rounded-0"><i class="fa fa-edit"></i></a>
                                     </li>
                                     <li class="list-inline-item">
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+                                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-danger btn-sm rounded-0"><i class="fa fa-trash"></i></button>

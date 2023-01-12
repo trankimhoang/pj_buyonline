@@ -29,4 +29,6 @@ Route::middleware(['auth:admin'])->group(function (){
 
     Route::resource('category', 'Admin\ProductCategoryController');
 
+    Route::resource('products', 'Admin\ProductController');
+
 });

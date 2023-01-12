@@ -82,6 +82,17 @@
                             <a class="nav-link" href="{{ route('admin.category.create') }}">Thêm loại</a>
                         </nav>
                     </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsProduct" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Sản phẩm
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayoutsProduct" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{ route('admin.products.index') }}">Danh sách</a>
+                            <a class="nav-link" href="{{ route('admin.products.create') }}">Thêm loại</a>
+                        </nav>
+                    </div>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -130,5 +141,7 @@
 <script src="{{ asset('theme/admin/assets/demo/chart-bar-demo.js') }}"></script>
 <script src="{{ asset('theme/admin/js/simple-datatables.js') }}" crossorigin="anonymous"></script>
 <script src="{{ asset('theme/admin/js/datatables-simple-demo.js') }}"></script>
+
+@yield('js')
 </body>
 </html>
