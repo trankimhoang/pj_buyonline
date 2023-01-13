@@ -16,24 +16,24 @@
                 <table id="datatablesSimple">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Product Name</th>
-                        <th>Category Name</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th>Mã số</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tên loại</th>
+                        <th>Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Đơn giá</th>
+                        <th>Thao tác</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>ID</th>
-                        <th>Product Name</th>
-                        <th>Category Name</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th>Mã số</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Tên loại</th>
+                        <th>Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Đơn giá</th>
+                        <th>Thao tác</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -50,7 +50,7 @@
                             <td>
                                 <ul class="list-inline m-0">
                                     <li class="list-inline-item">
-                                        <a href="" class="btn btn-success btn-sm rounded-0"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-success btn-sm rounded-0"><i class="fa fa-edit"></i></a>
                                     </li>
                                     <li class="list-inline-item">
                                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="post">

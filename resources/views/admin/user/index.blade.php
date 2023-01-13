@@ -15,15 +15,15 @@
                 <table id="datatablesSimple">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>Mã số</th>
+                        <th>Tên khách hàng</th>
                         <th>Email</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>Mã số</th>
+                        <th>Tên khách hàng</th>
                         <th>Email</th>
                     </tr>
                     </tfoot>

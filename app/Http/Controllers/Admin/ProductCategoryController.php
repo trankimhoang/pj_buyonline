@@ -28,7 +28,7 @@ class ProductCategoryController extends Controller {
      * @return View
      */
     public function create(): View {
-        return view('admin.category.create');
+        return view('admin.product_category.create');
     }
 
     /**
@@ -92,7 +92,6 @@ class ProductCategoryController extends Controller {
             Log::error($exception->getMessage());
             return redirect()->back()->with('error', $exception->getMessage());
         }
-
     }
 
     /**

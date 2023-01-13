@@ -9,21 +9,21 @@
         <form action="{{ route('admin.admins.store') }}" method="post">
             @csrf
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name" style="font-weight: bold">Name</label>
                 <input type="text" name="name" class="form-control">
                 @error('name')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email" style="font-weight: bold">Email</label>
                 <input type="email" name="email" class="form-control">
                 @error('email')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password" style="font-weight: bold">Password</label>
                 <input type="password" name="password" class="form-control">
                 @error('password')
                 <p class="alert alert-danger">{{ $message }}</p>

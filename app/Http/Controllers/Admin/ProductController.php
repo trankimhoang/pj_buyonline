@@ -82,7 +82,8 @@ class ProductController extends Controller {
      */
     public function edit(int $id): View {
         $product = Product::find($id);
-        return view('admin.products.edit', compact('product'));
+        $listCategory = ProductCategory::all();
+        return view('admin.product.edit', compact('product', 'listCategory'));
     }
 
     /**
@@ -90,10 +91,27 @@ class ProductController extends Controller {
      *
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse {
+        try {
+            $product = Product::find($id);
+            $data = $request->all();
+            $product->fill($data);
+
+            if ($request->has('image')) {
+                $imagePath = 'product_images/' . $product->getAttribute('id');
+                $imageUrl = uploadImage($request->file('image'), 'avatar', $imagePath);
+                $product->setAttribute('image', $imageUrl);
+                $product->save();
+            }
+
+            $product->save();
+            return redirect()->route('admin.products.index')->with('success', 'Sửa thành công');
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**

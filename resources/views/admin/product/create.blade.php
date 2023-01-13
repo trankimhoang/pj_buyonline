@@ -9,7 +9,7 @@
         <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name" style="font-weight: bold">Tên sản phẩm</label>
                 <input type="text" name="name" class="form-control">
                 @error('name')
                 <p class="alert alert-danger">{{ $message }}</p>
@@ -17,16 +17,16 @@
             </div>
 
             <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description" style="font-weight: bold">Mô tả</label>
                 <input type="text" name="description" class="form-control">
                 @error('description')
                 <p class="alert alert-danger">{{ $message }}</p>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="category_id">Category</label>
+                <label for="category_id" style="font-weight: bold">Loại sản phẩm</label>
                 <select name="category_id" class="form-control">
-                    <option value="">Thêm loại sản phẩm</option>
+                    <option value="">--Chọn--</option>
                     @foreach($listCategory as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <label for="price">Price</label>
+                <label for="price" style="font-weight: bold">Đơn giá</label>
                 <input type="text" name="price" class="form-control">
                 @error('price')
                 <p class="alert alert-danger">{{ $message }}</p>
@@ -46,7 +46,7 @@
 
             <div class="form-group">
                 <img src="" width="256px" class="img-preview">
-                <label for="image">Image</label>
+                <label for="image" style="font-weight: bold">Hình ảnh</label>
                 <input type="file" name="image" id="image" class="form-control">
                 @error('image')
                 <p class="alert alert-danger">{{ $message }}</p>

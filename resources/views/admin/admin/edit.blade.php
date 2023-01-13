@@ -10,21 +10,21 @@
             @csrf
             @method('put')
             <div class="form-group">
-                <label for="name">ID</label>
-                <input readonly type="text" name="id" class="form-control" value="{{ old('name', $admin->name) }}">
+                <label for="name" style="font-weight: bold">ID</label>
+                <input readonly type="text" name="id" class="form-control" value="{{ old('name', $admin->id) }}">
             </div>
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name" style="font-weight: bold">Name</label>
                 <input type="text" name="name" class="form-control" value="{{ old('name', $admin->name) }}">
             </div>
 
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email" style="font-weight: bold">Email</label>
                 <input type="text" name="email" class="form-control" value="{{ old('name', $admin->email) }}">
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password" style="font-weight: bold">Password</label>
                 <input type="password" name="password" class="form-control" value="{{ old('password') }}"
                        autocomplete="off">
             </div>

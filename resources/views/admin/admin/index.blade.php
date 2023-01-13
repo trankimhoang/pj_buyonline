@@ -16,18 +16,18 @@
                 <table id="datatablesSimple">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>Mã số</th>
+                        <th>Tên quản trị</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th>Thao tác</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>Mã số</th>
+                        <th>Tên quản trị</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th>Thao tác</th>
                     </tr>
                     </tfoot>
                     <tbody>
